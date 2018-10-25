@@ -23,6 +23,10 @@
                     "class": "@pgo/FileTarget",
                     "levels": "WARN,ERROR,FATAL",
                     "filePath": "@runtime/error.log"
+                },
+                "console": {
+                    "class": "@pgo/ConsoleTarget",
+                    "levels": "ALL"
                 }
             }
         }

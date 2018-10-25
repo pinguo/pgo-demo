@@ -1,9 +1,6 @@
 package Controller
 
 import (
-    "net/http"
-    "time"
-
     "github.com/pinguo/pgo"
 )
 
@@ -12,6 +9,21 @@ type WelcomeController struct {
 }
 
 func (w *WelcomeController) ActionIndex() {
-    data := pgo.Map{"text": "welcome to pgo-demo", "now": time.Now()}
-    w.OutputJson(data, http.StatusOK)
+    name := w.GetContext().ValidateParam("name", "hitzheng").Do()
+    age := w.GetContext().ValidateParam("age", "100").Int().Do()
+
+    data := pgo.Map{
+        "name": name,
+        "age":  age,
+    }
+
+    w.OutputView("welcome.html", data)
+}
+
+func (w *WelcomeController) ActionGET() {
+
+}
+
+func (w *WelcomeController) ActionPOST() {
+
 }

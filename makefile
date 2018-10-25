@@ -1,15 +1,21 @@
 # 用于非GoLand环境的编译
-# GOPATH=$(pwd) go build -o bin/pgo-demo src/Main/main.go
 
 AppName:=pgo-demo
 GOPATH:=$(shell pwd)
 
-.PHONY: build start stop
+.PHONY: build start stop update init
 
 build:
 	GOPATH=${GOPATH} go build -o bin/${AppName} src/Main/main.go
 
-start:
+start: build
 	bin/$(AppName)
 
+stop:
+	killall $(AppName)
 
+update:
+	GOPATH=${GOPATH} cd src && glide update
+
+init:
+	[]

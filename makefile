@@ -33,16 +33,16 @@ stop:
 	-killall $(binName)
 
 build:
-	GOPATH=$(baseDir) $(goBin) build -o $(binDir)/$(binName) $(srcDir)/Main/main.go
+	export GOPATH=$(baseDir) && $(goBin) build -o $(binDir)/$(binName) $(srcDir)/Main/main.go
 
 pack:
 	cd $(baseDir) && $(packCommand) $(packName) $(packTargets)
 
 update:
-	GOPATH=$(baseDir) cd src && $(glideBin) update
+	export GOPATH=$(baseDir) && cd src && $(glideBin) update
 
 getPGO:
-	GOPATH=$(baseDir) cd src && $(glideBin) get github.com/pinguo/pgo
+	export GOPATH=$(baseDir) && cd src && $(glideBin) get github.com/pinguo/pgo
 
 init:
 	@[ -d $(baseDir)/conf ] || mkdir $(baseDir)/conf

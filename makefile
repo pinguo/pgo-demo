@@ -1,21 +1,67 @@
-# 用于非GoLand环境的编译
+# makefile used in environment not GoLand.
+# copy this file to project base directory.
 
-AppName:=pgo-demo
-GOPATH:=$(shell pwd)
+# SET BIN NAME BY USER
+binName:=pgo-demo
 
-.PHONY: build start stop update init
+# SET PACK NAME BY USER
+packName:=pgo-demo.tgz
 
-build:
-	GOPATH=${GOPATH} go build -o bin/${AppName} src/Main/main.go
+packTargets:=bin conf
+packCommand:=tar -czf
+
+goBin:=go
+glideBin:=glide
+
+######## DO NOT CHANGE THE FLOWING CONTENT ########
+
+# absolute path of makefile
+mkPath:=$(abspath $(firstword $(MAKEFILE_LIST)))
+
+# absolute base directory of project
+baseDir:=$(strip $(patsubst %/, %, $(dir $(mkPath))))
+
+binDir:=$(baseDir)/bin
+srcDir:=$(baseDir)/src
+
+.PHONY: start stop build update init
 
 start: build
-	bin/$(AppName)
+	$(binDir)/$(binName)
 
 stop:
-	killall $(AppName)
+	-killall $(binName)
+
+build:
+	GOPATH=$(baseDir) $(goBin) build -o $(binDir)/$(binName) $(srcDir)/Main/main.go
+
+pack:
+	cd $(baseDir) && $(packCommand) $(packName) $(packTargets)
 
 update:
-	GOPATH=${GOPATH} cd src && glide update
+	GOPATH=$(baseDir) cd src && $(glideBin) update
+
+getPGO:
+	GOPATH=$(baseDir) cd src && $(glideBin) get github.com/pinguo/pgo
 
 init:
-	[]
+	@[ -d $(baseDir)/conf ] || mkdir $(baseDir)/conf
+	@[ -d $(srcDir) ] || mkdir $(srcDir)
+	@[ -d $(srcDir)/Command ] || mkdir $(srcDir)/Command
+	@[ -d $(srcDir)/Controller ] || mkdir $(srcDir)/Controller
+	@[ -d $(srcDir)/Lib ] || mkdir $(srcDir)/Lib
+	@[ -d $(srcDir)/Main ] || mkdir $(srcDir)/Main
+	@[ -d $(srcDir)/Model ] || mkdir $(srcDir)/Model
+	@[ -d $(srcDir)/Service ] || mkdir $(srcDir)/Service
+	@[ -d $(srcDir)/Struct ] || mkdir $(srcDir)/Struct
+	@[ -d $(srcDir)/Test ] || mkdir $(srcDir)/Test
+	@[ -f $(srcDir)/glide.yaml ] || (cd $(srcDir) && echo Y | glide init)
+
+help:
+	@echo "make start    start $(binName)"
+	@echo "make stop     stop $(binName)"
+	@echo "make build    build $(binName)"
+	@echo "make pack     pack project"
+	@echo "make update   glide update"
+	@echo "make getPGO   glide get PGO"
+	@echo "make init     init project"

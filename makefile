@@ -4,12 +4,6 @@
 # SET BIN NAME BY USER
 binName:=pgo-demo
 
-# SET PACK NAME BY USER
-packName:=pgo-demo.tgz
-
-packTargets:=bin conf
-packCommand:=tar -czf
-
 goBin:=go
 glideBin:=glide
 
@@ -35,13 +29,10 @@ stop:
 build:
 	export GOPATH=$(baseDir) && $(goBin) build -o $(binDir)/$(binName) $(srcDir)/Main/main.go
 
-pack:
-	cd $(baseDir) && $(packCommand) $(packName) $(packTargets)
-
 update:
 	export GOPATH=$(baseDir) && cd src && $(glideBin) update
 
-getPGO:
+pgo:
 	export GOPATH=$(baseDir) && cd src && $(glideBin) get github.com/pinguo/pgo
 
 init:
@@ -61,7 +52,6 @@ help:
 	@echo "make start    start $(binName)"
 	@echo "make stop     stop $(binName)"
 	@echo "make build    build $(binName)"
-	@echo "make pack     pack project"
 	@echo "make update   glide update"
-	@echo "make getPGO   glide get PGO"
+	@echo "make pgo      glide get pgo"
 	@echo "make init     init project"

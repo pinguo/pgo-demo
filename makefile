@@ -1,4 +1,4 @@
-# makefile used in environment not GoLand.
+# this makefile used in console environment.
 # copy this file to project base directory.
 
 # SET BIN NAME BY USER
@@ -18,7 +18,7 @@ baseDir:=$(strip $(patsubst %/, %, $(dir $(mkPath))))
 binDir:=$(baseDir)/bin
 srcDir:=$(baseDir)/src
 
-.PHONY: start stop build update init
+.PHONY: start stop build update pgo init
 
 start: build
 	$(binDir)/$(binName)
@@ -30,10 +30,10 @@ build:
 	export GOPATH=$(baseDir) && $(goBin) build -o $(binDir)/$(binName) $(srcDir)/Main/main.go
 
 update:
-	export GOPATH=$(baseDir) && cd src && $(glideBin) update
+	export GOPATH=$(baseDir) && cd $(srcDir) && $(glideBin) update
 
 pgo:
-	export GOPATH=$(baseDir) && cd src && $(glideBin) get github.com/pinguo/pgo
+	export GOPATH=$(baseDir) && cd $(srcDir) && $(glideBin) get github.com/pinguo/pgo
 
 init:
 	@[ -d $(baseDir)/conf ] || mkdir $(baseDir)/conf

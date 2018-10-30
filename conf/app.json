@@ -28,6 +28,12 @@
                     "class": "@pgo/ConsoleTarget",
                     "levels": "ALL"
                 }
+            },
+            "redis": {
+                "class": "@pgo/Client/Redis/Client",
+                "servers": [
+                    "127.0.0.1:6379"
+                ]
             }
         }
     }

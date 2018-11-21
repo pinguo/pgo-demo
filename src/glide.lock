@@ -1,8 +1,8 @@
 hash: 1019679d193fba54f61d7ae9c35588fc47cdb37f52f84ee4284b3c2298fde670
-updated: 2018-10-31T10:04:19.391789+08:00
+updated: 2018-11-21T16:33:48.670122+08:00
 imports:
 - name: github.com/pinguo/pgo
-  version: 4e98ba3f9c4b0cabda3f58a72372ce05c9ac2664
+  version: 6bc4e67a639afef2592a7264a1f6b850633977ae
   subpackages:
   - Util
 testImports: []

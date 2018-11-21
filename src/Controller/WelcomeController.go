@@ -15,6 +15,11 @@ type WelcomeController struct {
 
 // 默认动作(index)
 func (w *WelcomeController) ActionIndex() {
+    w.OutputJson("hello world", http.StatusOK)
+}
+
+// 模板渲染
+func (w *WelcomeController) ActionView() {
     // 获取并验证参数
     name := w.GetContext().ValidateParam("name", "hitzheng").Do()
     age := w.GetContext().ValidateParam("age", "100").Int().Do()

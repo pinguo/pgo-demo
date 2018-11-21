@@ -5,14 +5,13 @@
     "publicPath": "@app/public",
     "viewPath": "@app/view",
     "server": {
-        "addr": "0.0.0.0:8000",
+        "httpAddr": "0.0.0.0:8000",
         "readTimeout": "30s",
-        "writeTimeout": "30s",
-        "plugins": []
+        "writeTimeout": "30s"
     },
     "components": {
         "log": {
-            "levels": "ALL",
+            "levels": "NONE",
             "targets": {
                 "info": {
                     "class": "@pgo/FileTarget",

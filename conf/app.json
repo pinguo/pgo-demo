@@ -11,7 +11,7 @@
     },
     "components": {
         "log": {
-            "levels": "NONE",
+            "levels": "ALL",
             "targets": {
                 "info": {
                     "class": "@pgo/FileTarget",

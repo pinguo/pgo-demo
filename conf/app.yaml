@@ -1,17 +1,17 @@
 # 应用名称, 默认: 程序名称
-name:       "pgo-demo"
+name:        "pgo-demo"
 
 # GO线程数, 默认: CPU核心数, 容器环境需要设置确定值
-GOMAXPROCS: 2
+GOMAXPROCS:  2
 
-# 运行时目录, 默认: @app/runtime
-#runtimePath: @app/runtime
+# 运行时目录, 默认: "@app/runtime"
+# runtimePath: "@app/runtime"
 
-# 静态资源目录, 默认: @app/public
-#publicPath: @app/public
+# 静态资源目录, 默认: "@app/public"
+# publicPath:  "@app/public"
 
-# 视图模板目录, 默认: @app/view
-#viewPath: @app/view
+# 视图模板目录, 默认: "@app/view"
+# viewPath:    "@app/view"
 
 server:
     # http服务地址, 若httpAddr与httpsAddr都为空, 则使用"0.0.0.0:8000"
@@ -51,15 +51,11 @@ server:
 components:
     # 日志组件
     log:
-        # 总级别开关
         levels: "ALL"
         targets:
             info:
-                # 文件输出
                 class:    "@pgo/FileTarget"
-                # 输出级别
                 levels:   "DEBUG,INFO,NOTICE"
-                # 日志文件
                 filePath: "@runtime/info.log"
 
             error:

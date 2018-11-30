@@ -1,0 +1,72 @@
+# 应用名称, 默认: 程序名称
+name:       "pgo-demo"
+
+# GO线程数, 默认: CPU核心数, 容器环境需要设置确定值
+GOMAXPROCS: 2
+
+# 运行时目录, 默认: @app/runtime
+#runtimePath: @app/runtime
+
+# 静态资源目录, 默认: @app/public
+#publicPath: @app/public
+
+# 视图模板目录, 默认: @app/view
+#viewPath: @app/view
+
+server:
+    # http服务地址, 若httpAddr与httpsAddr都为空, 则使用"0.0.0.0:8000"
+    httpAddr:       "0.0.0.0:8000"
+
+    # debug服务地址, /debug/pprof及状态输出, 默认为空
+    # debugAddr:    "0.0.0.0:8100"
+
+    # https服务地址, 需要同时指定crtFile和keyFile, 默认为空
+    # httpsAddr:    "0.0.0.0:8443"
+
+    # https证书路径, 默认为空
+    # cftFile:      "@app/conf/site.crt"
+
+    # https私钥路径, 默认为空
+    # keyFile:      "@app/conf/site.key"
+
+    # 最大http头字节数, 默认1MB
+    # maxHeaderBytes: 1024000
+
+    # 请求读取超时, 默认30s
+    # readTimeout:    "30s"
+
+    # 请求发送超时, 默认30s
+    # writeTimeout:   "30s"
+
+    # 状态日志输出间隔, 默认60s
+    # statsInterval:  "60s"
+
+    # 是否输出访问日志, 默认true
+    # enableAccessLog: true
+
+    # 插件列表, 默认["gzip"], 空数组时无插件生效
+    # plugins: ["file", "gzip"]
+
+# 组件列表
+components:
+    # 日志组件
+    log:
+        # 总级别开关
+        levels: "ALL"
+        targets:
+            info:
+                # 文件输出
+                class:    "@pgo/FileTarget"
+                # 输出级别
+                levels:   "DEBUG,INFO,NOTICE"
+                # 日志文件
+                filePath: "@runtime/info.log"
+
+            error:
+                class:    "@pgo/FileTarget"
+                levels:   "WARN,ERROR,FATAL"
+                filePath: "@runtime/error.log"
+
+            console:
+                class:  "@pgo/ConsoleTarget"
+                levels: "ALL"

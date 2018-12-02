@@ -47,9 +47,7 @@ server:
     # 插件列表, 默认["gzip"], 空数组时无插件生效
     # plugins: ["file", "gzip"]
 
-# 组件列表
 components:
-    # 日志组件
     log:
         levels: "ALL"
         targets:
@@ -57,12 +55,10 @@ components:
                 class:    "@pgo/FileTarget"
                 levels:   "DEBUG,INFO,NOTICE"
                 filePath: "@runtime/info.log"
-
             error:
                 class:    "@pgo/FileTarget"
                 levels:   "WARN,ERROR,FATAL"
                 filePath: "@runtime/error.log"
-
             console:
                 class:  "@pgo/ConsoleTarget"
                 levels: "ALL"

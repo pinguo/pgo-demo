@@ -11,6 +11,7 @@ func init() {
     container := pgo.App.GetContainer()
 
     // 注册控制器到PGO容器中
+    container.Bind(&TestController{})
     container.Bind(&WelcomeController{})
 
     // 注册其它控制器(包含子包)

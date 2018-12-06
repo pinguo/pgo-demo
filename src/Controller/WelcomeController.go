@@ -13,6 +13,14 @@ type WelcomeController struct {
     pgo.Controller
 }
 
+func (w *WelcomeController) Construct() {
+    fmt.Println("welcome construct")
+}
+
+func (w *WelcomeController) Destruct() {
+    fmt.Println("welcome destruct")
+}
+
 // 默认动作(index)
 func (w *WelcomeController) ActionIndex() {
     w.OutputJson("hello world", http.StatusOK)

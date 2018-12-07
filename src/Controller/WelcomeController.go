@@ -14,11 +14,7 @@ type WelcomeController struct {
 }
 
 func (w *WelcomeController) Construct() {
-    fmt.Println("welcome construct")
-}
-
-func (w *WelcomeController) Destruct() {
-    fmt.Println("welcome destruct")
+    fmt.Printf("welcome construct, addr:%p\n", w)
 }
 
 // 默认动作(index)

@@ -9,16 +9,17 @@ import (
 
 type TestController struct {
     pgo.Controller
+
+    str string
+    arr []int
 }
 
 func (t *TestController) Construct() {
-    fmt.Println("test construct")
-}
-
-func (t *TestController) Destruct() {
-    fmt.Println("test destruct")
+    fmt.Printf("test construct, str:%s, arr:%v, addr:%p\n", t.str, t.arr, t)
 }
 
 func (t *TestController) ActionIndex() {
-    t.OutputJson("call /test/index", http.StatusOK)
+    t.str = "9999999"
+    t.arr = []int{1, 2, 3}
+    t.OutputJson("call /test/index, str:"+t.str, http.StatusOK)
 }

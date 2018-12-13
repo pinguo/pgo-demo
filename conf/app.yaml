@@ -18,7 +18,7 @@ server:
     httpAddr:       "0.0.0.0:8000"
 
     # debug服务地址, /debug/pprof及状态输出, 默认为空
-    # debugAddr:    "0.0.0.0:8100"
+    debugAddr:      "0.0.0.0:8100"
 
     # https服务地址, 需要同时指定crtFile和keyFile, 默认为空
     # httpsAddr:    "0.0.0.0:8443"

@@ -7,6 +7,9 @@ import (
     _ "Controller" // 导入Controller
 
     "github.com/pinguo/pgo"
+
+    // 导入mysql驱动包
+    _ "github.com/go-sql-driver/mysql"
 )
 
 func main() {

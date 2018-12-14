@@ -13,6 +13,7 @@ func init() {
     // 注册控制器到PGO容器中
     container.Bind(&TestController{})
     container.Bind(&WelcomeController{})
+    container.Bind(&MysqlController{})
 
     // 注册其它控制器(包含子包)
 }

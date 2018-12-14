@@ -49,16 +49,40 @@ server:
 
 components:
     log:
+        # 总级别开关
         levels: "ALL"
         targets:
             info:
+                # 信息日志(文件输出)
                 class:    "@pgo/FileTarget"
                 levels:   "DEBUG,INFO,NOTICE"
                 filePath: "@runtime/info.log"
+                # rotate:     "daily"
+                # maxLogFile: 10
             error:
-                class:    "@pgo/FileTarget"
-                levels:   "WARN,ERROR,FATAL"
-                filePath: "@runtime/error.log"
+                # 错误日志(文件输出)
+                class:      "@pgo/FileTarget"
+                levels:     "WARN,ERROR,FATAL"
+                filePath:   "@runtime/error.log"
+                # rotate:     "daily"
+                # maxLogFile: 10
             console:
+                # 控制台日志(用于开发调试)
                 class:  "@pgo/ConsoleTarget"
                 levels: "ALL"
+
+    db:
+        # Db组件类名称
+        class:       "@pgo/Client/Db/Client"
+        # 驱动名(需导入指定的驱动包)
+        driver:      "mysql"
+        # 主库地址(参见各驱动包说明)
+        dsn:         "root:123qwe@tcp(127.0.0.1:3306)/test?charset=utf8&timeout=0.5s"
+        # 从库地址(可选，默认空)
+        # slaves: ["slave1 dsn", "slave2 dsn"]
+        # 最大空闲连接数(默认5)
+        # maxIdleConn: 5
+        # 最大连接维持时间(默认1小时)
+        # maxConnTime: "1h"
+        # 慢日志最小时间(默认100ms)
+        # slowLogTime: "100ms"

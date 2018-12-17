@@ -21,7 +21,7 @@ func (m *MysqlController) ActionExec() {
     // 执行插入操作
     age := (time.Now().Nanosecond() / 1000) % 100
     name := fmt.Sprintf("name%d", age)
-    query := "INSERT INTO `test` (`name`, `age`) VALUES (?, ?)"
+    query := "INSERT INTO test (name, age) VALUES (?, ?)"
 
     res := db.Exec(query, name, age)
     if res == nil {
@@ -55,20 +55,30 @@ func (m *MysqlController) ActionExec() {
     fmt.Println("delete: ", lastId2, numRow2)
 }
 
-// 使用db.Query/QueryContext来查询数据，若当前db对象未执行过任何操作，
-// 则使用从库进行查询，否则复用上一次获取的db连接。
+// 使用db.Query/QueryOne/QueryContext/QueryOneContext来查询数据，
+// 若当前db对象未执行过任何操作，则使用从库进行查询，否则复用上一次获取的db连接。
 func (m *MysqlController) ActionQuery() {
     // 获取db的上下文适配对象
     db := m.GetObject(Db.AdapterClass).(*Db.Adapter)
 
-    query := "SELECT id, name, age FROM `test` WHERE age>?"
+    // 查询单条数据
+    id, name, age := 0, "", 0
+    query := "SELECT id, name, age FROM test WHERE id=?"
+    err := db.QueryOne(query, 3).Scan(&id, &name, &age)
+    if err != nil {
+        fmt.Println("query one failed, " + err.Error())
+    } else {
+        fmt.Println("query one for id=3, ", id, name, age)
+    }
+
+    // 查询多条数据
+    query = "SELECT id, name, age FROM test WHERE age>?"
     rows := db.Query(query, 10)
     if rows == nil {
         panic("query failed, query: " + query)
     }
 
     defer rows.Close()
-
     for rows.Next() {
         id, name, age := 0, "", 0
         if err := rows.Scan(&id, &name, &age); err != nil {
@@ -87,6 +97,7 @@ func (m *MysqlController) ActionPrepare() {
 
     query := "INSERT INTO test (name, age) VALUES (?, ?)"
     stmt := db.Prepare(query)
+    defer stmt.Close()
 
     for i := 0; i < 10; i++ {
         name := fmt.Sprintf("name%d", i)

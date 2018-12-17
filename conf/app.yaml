@@ -94,3 +94,20 @@ components:
         countryFile: "@app/conf/GeoLite2-Country.mmdb"
         # 城市数据文件(包含省市等数据，文件50M左右)
         cityFile:    "@app/conf/GeoLite2-City.mmdb"
+
+    memcache:
+        # 组件类名称
+        class: "@pgo/Client/Memcache/Client"
+        # KEY前缀，默认为"pgo_"
+        # prefix: "pgo_"
+        # 每个地址的最大空闲连接数，默认10
+        # maxIdleConn: 10
+        # 连接空闲时间(在这个时间内再次进行操作不需要进行探活)，默认1分钟
+        # maxIdleTime: "60s"
+        # 网络超时(连接、读写等)，默认1秒
+        # netTimeout: "1s"
+        # 服务器探活间隔(自动剔除和添加server)，默认关闭
+        # probInterval: "0s"
+        # 服务器地址，如果server有权重，请自行按比例添加
+        servers:
+            - "127.0.0.1:11211"

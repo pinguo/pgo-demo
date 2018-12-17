@@ -38,6 +38,7 @@ func (m *MemcacheController) ActionSet() {
     mc.MSet(items)
 }
 
+// curl -v http://127.0.0.1:8000/memcache/get
 func (m *MemcacheController) ActionGet() {
     // 获取memcache的上下文适配对象
     mc := m.GetObject(Memcache.AdapterClass).(*Memcache.Adapter)

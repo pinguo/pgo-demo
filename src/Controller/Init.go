@@ -15,6 +15,7 @@ func init() {
     container.Bind(&WelcomeController{})
     container.Bind(&MysqlController{})
     container.Bind(&HttpClientController{})
+    container.Bind(&MaxMindController{})
 
     // 注册其它控制器(包含子包)
 }

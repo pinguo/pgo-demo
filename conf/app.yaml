@@ -86,3 +86,11 @@ components:
         # maxConnTime: "1h"
         # 慢日志最小时间(默认100ms)
         # slowLogTime: "100ms"
+
+    maxMind:
+        # MaxMind组件类名称
+        class:       "@pgo/Client/MaxMind/Client"
+        # 国家数据文件(只包含国家数据，文件5M左右)
+        countryFile: "@app/conf/GeoLite2-Country.mmdb"
+        # 城市数据文件(包含省市等数据，文件50M左右)
+        cityFile:    "@app/conf/GeoLite2-City.mmdb"

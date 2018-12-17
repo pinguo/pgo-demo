@@ -17,6 +17,7 @@ func init() {
     container.Bind(&HttpClientController{})
     container.Bind(&MaxMindController{})
     container.Bind(&MemcacheController{})
+    container.Bind(&MemoryController{})
 
     // 注册其它控制器(包含子包)
 }

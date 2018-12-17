@@ -111,3 +111,11 @@ components:
         # 服务器地址，如果server有权重，请自行按比例添加
         servers:
             - "127.0.0.1:11211"
+
+    memory:
+        # 组件类名称
+        class: "@pgo/Client/Memory/Client"
+        # GC间隔，默认60秒
+        # gcInterval: "60s"
+        # 每次GC的最大key数目，默认1000
+        # gcMaxItems: 1000

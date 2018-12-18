@@ -131,3 +131,24 @@ components:
         # readTimeout: "10s"
         # 写入超时，默认10秒
         # writeTimeout: "10s"
+
+    redis:
+        # 组件类名称
+        class: "@pgo/Client/Redis/Client"
+        # KEY前缀，默认"pgo_"
+        # prefix: "pgo_"
+        # 连接密码，默认为空
+        # password: ""
+        # 使用DB的序号，默认为0
+        # db: 0
+        # 每个地址最大空闲连接数，默认为10
+        # maxIdleConn: 10
+        # 连接空闲时间(在这个时间内再次进行操作不需要进行探活)，默认1分钟
+        # maxIdleTime: "60s"
+        # 网络超时(连接、读写等)，默认1秒
+        # netTimeout: "1s"
+        # 服务器探活间隔(自动剔除和添加server)，默认关闭
+        # probInterval: "0s"
+        # 服务器地址，如果server有权重，请自行按比例添加
+        servers:
+            - "127.0.0.1:6379"

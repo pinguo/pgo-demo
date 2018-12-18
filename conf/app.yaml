@@ -24,13 +24,13 @@ server:
     # httpsAddr:    "0.0.0.0:8443"
 
     # https证书路径, 默认为空
-    # cftFile:      "@app/conf/site.crt"
+    # crtFile:      "@app/conf/site.crt"
 
     # https私钥路径, 默认为空
     # keyFile:      "@app/conf/site.key"
 
     # 最大http头字节数, 默认1MB
-    # maxHeaderBytes: 1024000
+    # maxHeaderBytes: 1048576
 
     # 请求读取超时, 默认30s
     # readTimeout:    "30s"

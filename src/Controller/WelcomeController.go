@@ -36,8 +36,8 @@ func (w *WelcomeController) ActionView() {
 // URL路由控制器，根据url自动映射控制器及方法，不需要配置.
 // url的最后一段为动作名称，不存在则为index,
 // url的其余部分为控制器名称，不存在则为index,
-// 例如：/path/to/welcome/say-hello，控制器类名为
-// Path/To/WelcomeController 动作方法名为ActionSayHello
+// 例如：/welcome/say-hello，控制器类名为
+// Controller/WelcomeController 动作方法名为ActionSayHello
 func (w *WelcomeController) ActionSayHello() {
     ctx := w.GetContext() // 获取PGO请求上下文件
 

@@ -119,3 +119,15 @@ components:
         # gcInterval: "60s"
         # 每次GC的最大key数目，默认1000
         # gcMaxItems: 1000
+
+    mongo:
+        # 组件类名称
+        class: "@pgo/Client/Mongo/Client"
+        # mongo地址
+        dsn:   "mongodb://127.0.0.1:27017/test"
+        # 连接超时，默认1秒
+        # connectTimeout: "1s"
+        # 读取超时，默认10秒
+        # readTimeout: "10s"
+        # 写入超时，默认10秒
+        # writeTimeout: "10s"
